@@ -19,5 +19,5 @@ a developer to updated the system with new card formats and higher accuracy rate
 
 The source also includes optional code to allow a developer to store copies of each scanned card image in the IOS device photo library.
 These can images can be useful for analysis of failures. 
-Instructions for compiling this code with card.io can be found in the file ____________ 
+Instructions for compiling this code with card.io can be found in the file "Environment Configurations.pdf" 
 
