@@ -1,0 +1,30 @@
+//
+//  Release - CardIO_Framework_Release.xcconfig
+//  icc
+//
+//
+
+#include "CardIO_Framework.xcconfig"
+
+// Cannot use EXPORTED_SYMBOLS_FILE with Bitcode enablement (related to 22897234 in Xcode 7.1 release notes?)
+// EXPORTED_SYMBOLS_FILE = SupportFiles/CardIO_exported_symbols.txt
+
+OTHER_CFLAGS[arch=armv7s] = -mfloat-abi=softfp -mfpu=neon
+OTHER_CFLAGS[sdk=iphoneos*][arch=armv7] = -mfloat-abi=softfp -mfpu=neon
+OTHER_CFLAGS[sdk=*] = -mfloat-abi=softfp -mfpu=neon
+
+GCC_PREPROCESSOR_DEFINITIONS = CARDIO_DEBUG=0
+GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*] = CARDIO_DEBUG=0 USE_CAMERA=0
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+
+VALIDATE_PRODUCT = YES
+
+GENERATE_MASTER_OBJECT_FILE = YES
+
+RUN_CLANG_STATIC_ANALYZER = NO
+MTL_ENABLE_DEBUG_INFO = NO
+
+// Use prelinking instead of OTHER_LIBTOOLFLAGS or OTHER_LDFLAGS
+PRELINK_LIBS = $(inherited) $(SRCROOT)/opencv_device/lib/libopencv_core.a $(SRCROOT)/opencv_device/lib/libopencv_imgproc.a
+
