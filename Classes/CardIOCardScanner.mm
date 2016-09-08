@@ -3,6 +3,9 @@
 //  See the file "LICENSE.md" for the full license governing this code.
 //
 
+
+
+
 #if USE_CAMERA
 
 #import "CardIOCardScanner.h"
@@ -16,6 +19,9 @@
 #include "morph.h"
 #include <vector>
 
+//#import "OCREScanner.h"
+
+
 #define SCAN_FOREVER 0  // useful for debugging expiry
 
 @interface CardIOCardScanner ()
@@ -27,12 +33,17 @@
 @property(assign, readwrite) BOOL lastFrameWasUsable;
 @property(assign, readwrite) BOOL lastFrameWasUpsideDown;
 @property(assign, readwrite) BOOL scanIsComplete;
+//@property(strong, readwrite) OCREScanner *os;
+//@property(assign, readwrite) int rejectionCount;
 
 - (void)markCachesDirty;
 
 @end
 
 @implementation CardIOCardScanner
+
+//@synthesize os;
+//@synthesize rejectionCount;
 
 - (void)markCachesDirty {
   self.cardInfoCacheDirty = YES;
@@ -41,6 +52,24 @@
 - (id)init {
   if((self = [super init])) {
     scanner_initialize(&_scannerState);
+
+
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
+    
+    NSString *dataPath = [documentPath stringByAppendingPathComponent:@"tessdata"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:dataPath]) {
+      NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+      NSString *tessdataPath = [bundlePath stringByAppendingPathComponent:@"tessdata"];
+      if (tessdataPath) {
+        [fileManager copyItemAtPath:tessdataPath toPath:dataPath error:NULL];
+      }
+    }
+    
+    setenv("TESSDATA_PREFIX", [[documentPath stringByAppendingString:@"/"] UTF8String], 1);
+    ocre_scanner_init();
+    
     [self markCachesDirty];
   }
   return self;
@@ -76,7 +105,32 @@
   result.flipped = flipped;
   scanner_add_frame_with_expiry(&_scannerState, y.image, scanExpiry, &result);
   self.lastFrameWasUsable = result.usable;
-  if(!result.usable) {
+  
+  if(!result.usable)
+  {
+    if( result.focus_score >= 9.0f )
+    {
+      ocre_scanner_scan(y.image);
+      if(ocre_scanner_complete())
+      {
+        NSMutableString * cardInfoResult = [[NSMutableString alloc] initWithUTF8String:ocre_scanner_result()];
+        self.cardInfoCache = [CardIOReadCardInfo cardInfoWithNumber:cardInfoResult
+                                                           xOffsets:[NSArray arrayWithObjects:@40,@60,@80,@100, @130,@150,@170,@190, @220,@240,@260,@280, @310,@330,@350,@370, nil]
+                                                            yOffset:100
+                                                        expiryMonth:0
+                                                         expiryYear:0
+#if CARDIO_DEBUG
+                                                   expiryGroupedRects:nil
+                                                   nameGroupedRects:nil
+#endif
+                              ];
+        self.cardInfoCacheDirty = NO;
+        self.scanIsComplete = YES;
+        ocre_scanner_reset();
+        return;
+      }
+    }
+    
     self.lastFrameWasUpsideDown = result.upside_down;
   }
   [self markCachesDirty];
