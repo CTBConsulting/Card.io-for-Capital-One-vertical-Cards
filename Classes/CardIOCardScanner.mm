@@ -3,9 +3,6 @@
 //  See the file "LICENSE.md" for the full license governing this code.
 //
 
-
-
-
 #if USE_CAMERA
 
 #import "CardIOCardScanner.h"
@@ -31,13 +28,11 @@
 @property(assign, readwrite) BOOL lastFrameWasUpsideDown;
 @property(assign, readwrite) BOOL scanIsComplete;
 
-
 - (void)markCachesDirty;
 
 @end
 
 @implementation CardIOCardScanner
-
 
 - (void)markCachesDirty {
   self.cardInfoCacheDirty = YES;
@@ -46,7 +41,6 @@
 - (id)init {
   if((self = [super init])) {
     scanner_initialize(&_scannerState);
-
 
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
