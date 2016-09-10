@@ -19,9 +19,6 @@
 #include "morph.h"
 #include <vector>
 
-//#import "OCREScanner.h"
-
-
 #define SCAN_FOREVER 0  // useful for debugging expiry
 
 @interface CardIOCardScanner ()
@@ -33,8 +30,7 @@
 @property(assign, readwrite) BOOL lastFrameWasUsable;
 @property(assign, readwrite) BOOL lastFrameWasUpsideDown;
 @property(assign, readwrite) BOOL scanIsComplete;
-//@property(strong, readwrite) OCREScanner *os;
-//@property(assign, readwrite) int rejectionCount;
+
 
 - (void)markCachesDirty;
 
@@ -42,8 +38,6 @@
 
 @implementation CardIOCardScanner
 
-//@synthesize os;
-//@synthesize rejectionCount;
 
 - (void)markCachesDirty {
   self.cardInfoCacheDirty = YES;
