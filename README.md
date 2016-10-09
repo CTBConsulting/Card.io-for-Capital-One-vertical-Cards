@@ -61,7 +61,7 @@ Adding_new_card_definitions:
 	Contains instructions for collecting new samples and adding card definitions.
 
 To be added:
-	-Librarie Compile Instructions
+	-Libraries Compile Instructions
  	-Tesseract training instructions
 
 
