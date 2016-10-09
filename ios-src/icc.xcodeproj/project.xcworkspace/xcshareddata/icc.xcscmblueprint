@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AFB5F02DCDFFFDBBADBAEC823DD92698ACE3918D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AFB5F02DCDFFFDBBADBAEC823DD92698ACE3918D" : 0,
+    "ED5B9EE66AF55A4508C9CA923F6A3B43C759C813" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BCE9C739-6AB1-435B-9B4F-58C35EBFD819",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AFB5F02DCDFFFDBBADBAEC823DD92698ACE3918D" : "card.io-iOS-source\/",
+    "ED5B9EE66AF55A4508C9CA923F6A3B43C759C813" : "card.io-iOS-source\/dmz\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "icc",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "icc.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/card-io\/card.io-iOS-source.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AFB5F02DCDFFFDBBADBAEC823DD92698ACE3918D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/card-io\/card.io-dmz.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED5B9EE66AF55A4508C9CA923F6A3B43C759C813"
+    }
+  ]
+}
