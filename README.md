@@ -31,34 +31,37 @@ SampleCollector:
 	Prefab card.io iOS project designed to collect frames from the video stream for training
 	or adding new definitions. 
 
-android: 
-	Contains WIP Android Studio sample project with dmz changes for development and testing. 
+android-src: 
+	 Contains Android specific changes to card.io Android repo.
 
-dmz: 
-	Contains dmz changes for card.io dmz repo.
-
-compile: 
-	Contains scripts for compiling lib*.a libraries for iOS. Android lib*.so instructions to be added.
-
-iOS:
+ios-src:
 	Contains iOS specific changes to card.io iOS repo.
 
-merge-test: 
-	Contains iOS WIP Xcode sample project with dmz changes for development and testing.
+dmz-src: 
+	Contains dmz changes for card.io dmz repo.
+
+lib-src: 
+	Contains resources for compiling libraries for iOS/Android
+
+prebuilt: 
+	Contains iOS/Android WIP projects with dmz changes for development and testing.
 
 tessdata: 
-	Precompiled trained data for recognizing capital one format cards with tesseract.
+	Precompiled trained data for recognizing capital one format cards with tesseract. Additional trained data can be added here.
 
 Current File description:
 
 Environment_Configurations_iOS.pdf:
 	Contains install instructions for iOS project.
 
+Environment_Configurations_Android.pdf:
+	Contains install instructions for Android project.
+
 Adding_new_card_definitions:
 	Contains instructions for collecting new samples and adding card definitions.
 
 To be added:
-	-Environment Configurations and Documentation for Android.
+	-Libraries Compile Instructions
  	-Tesseract training instructions
 
 
